@@ -1,18 +1,15 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 <suite name="TestSuite">
-    <test name="Login">
+    <test name="LoginTest">
         <classes>
-            <class name="test_pack.Test1" />
+            <class name="test_pack.Test1"/>
         </classes>
     </test>
-<!--
-    <test name="ChangeCityTest">
-         <parameter name="cityName" value="Хвалынск"/>
-          <classes>
-              <class name="my_tests.Test2" />
-          </classes>
-    </test>-->
-
+    <test name="NewCityTest">
+        <classes>
+            <class name="test_pack.Test2" />
+        </classes>
+    </test>
 
    <!-- <test name="Choose">
         <classes>
