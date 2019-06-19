@@ -8,7 +8,7 @@ import org.testng.annotations.Test;
 public class Test2 extends TestBefore {
     @DataProvider(name = "cityName")
     public Object[][] dataProviderMethod() {
-        return new Object[][]{{"Хвалынск"}, {"Москва"}, {"Красноармейск"}};
+        return new Object[][]{{"Хвалынск"}, {"Самара"}, {"Уфа"}};
     }
 
     @Test(dataProvider = "cityName")
