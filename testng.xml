@@ -6,13 +6,18 @@
         </classes>
     </test>
     <test name="NewCityTest">
-        <classes>
-            <class name="test_pack.Test2" />
-        </classes>
+         <classes>
+             <class name="test_pack.Test2" />
+         </classes>
     </test>
     <test name="PriceTest">
+         <classes>
+             <class name="test_pack.Test3" />
+         </classes>
+    </test>
+    <test name="PromoCodeTest">
         <classes>
-            <class name="test_pack.Test3" />
+            <class name="test_pack.Test4" />
         </classes>
     </test>
 </suite>

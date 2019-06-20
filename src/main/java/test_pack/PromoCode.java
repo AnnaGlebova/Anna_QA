@@ -12,7 +12,7 @@ public class PromoCode extends TestBefore{
         this.driver = driver;
     }
 
-    @Step("Переход далее")
+    @Step("Переход далее {0}")
     public void clickElem(String Elem) {
         WebElement forRepair = driver.findElement(By.linkText(Elem));
         forRepair.click();

@@ -2,6 +2,7 @@ package test_pack;
 
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -96,5 +97,24 @@ public class BasketPage extends TestBefore {
                 .until(ExpectedConditions.attributeContains(
                         By.cssSelector("[class*='_3EX9adn_xp']"), "textContent", title));
         checkDelivery(title);
+    }
+
+    @Step("Ввод промокода")
+    public void inputPromoCode(String promoCode) {
+        // Находим электрические зубные щетки и переходим на страницу
+        WebElement fieldForSearch = driver
+                .findElement(By.cssSelector("[data-tid=\"a18db88\"] [class*=\"_2JDvXzYsUI\"]"));
+      //  fieldForSearch.click();
+        System.out.println(fieldForSearch);
+        fieldForSearch.sendKeys(promoCode);
+        fieldForSearch.sendKeys(Keys.ENTER);
+    }
+
+    @Step("Проверка на то, что промокод сработал")
+    public void checkPromoCode(String checkPrCode) {
+        // Ожидание изменения надписи о бесплатной доставке
+        (new WebDriverWait(driver, 10))
+                .until(ExpectedConditions
+                        .visibilityOf(driver.findElement(By.xpath("//span[text()='Скидка по промокоду']"))));
     }
 }

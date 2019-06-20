@@ -1,17 +1,23 @@
 package test_pack;
 
 import io.qameta.allure.Step;
-import org.openqa.selenium.*;
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+
+import java.util.List;
 
 public class StartPage extends TestBefore {
     private WebElement userButtonLog;
     private WebDriver driver;
     private WebElement regionElement;
     private String cityName;
+    private List<WebElement> elements = null;
 
     public StartPage(WebDriver driver) {
         this.driver = driver;
@@ -94,5 +100,18 @@ public class StartPage extends TestBefore {
         fieldForSearch.click();
         fieldForSearch.sendKeys(item);
         fieldForSearch.sendKeys(Keys.ENTER);
+    }
+
+    @Step("Переход далее")
+    public void clickElem(String Elem) {
+        WebElement forRepair = driver.findElement(By.linkText(Elem));
+        forRepair.click();
+    }
+
+
+    @Step("Переход в каталог")
+    public void openCatalog() {
+        WebElement catalog = driver.findElement(By.cssSelector("[class *= 'button2']"));
+        catalog.click();
     }
 }

@@ -14,17 +14,20 @@ public class Test4 extends TestBefore {
         promoCode.clickElem(elem1);
         String elem2 = "Раковины";
         promoCode.clickElem(elem2);
+        driver.get("https://beru.ru/catalog/rakoviny-umyvalniki/81826/list?hid=91614&track=fr_ctlg");
         ProductPage prodPage = new ProductPage(driver);
-        int price = 60000;
-        prodPage.enterFirstPrice(price);
-        prodPage.checkCountItem();
-        prodPage.addToBasket();
-        prodPage.goToBasket();
+        int priceOne = 30000;
+        prodPage.enterFirstPrice(priceOne);
+        prodPage.showYet();
+        prodPage.checkCountItemWithPrCode();
+        prodPage.checkEmptyListItem();
+        prodPage.addToBasketWithPrCode();
+        prodPage.goToBasketWithPrCode();
         BasketPage basketPage = new BasketPage(driver);
         String prCode = "VODA1000";
         basketPage.inputPromoCode(prCode);
         String checkPrCode = "Скидка по промокоду";
-        basketPage.checkPromoCode();
+        basketPage.checkPromoCode(checkPrCode);
 
 
     }

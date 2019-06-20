@@ -72,6 +72,22 @@ public class ProductPage extends TestBefore {
         elements = driver.findElements(By.cssSelector("[class*='grid-snippet_react']"));
     }
 
+    @Step("Проверка количества элементов на странице")
+    public void checkCountItemWithPrCode() {
+        // Находим фразу, которая содержит кол-во найденных раковин для считывания в список
+        final int countElement = Integer.parseInt(
+                driver.findElement(By.cssSelector("[class*='_1PQIIOelRL']"))
+                        .getAttribute("textContent").split(" ")[1]);
+        // Ждем появления всех раковин на странице
+        (new WebDriverWait(driver, 10)).until(new ExpectedCondition<Boolean>() {
+            public Boolean apply(WebDriver driver) {
+                return driver.findElements(By
+                        .cssSelector("[class*='grid-snippet_react']")).size() == countElement;
+            }
+        });
+        elements = driver.findElements(By.cssSelector("[class*='grid-snippet_react']"));
+    }
+
     @Step("Проверка того, что список элементов не пуст")
     public void checkEmptyListItem() {
         Assert.assertNotNull(elements);
@@ -111,10 +127,31 @@ public class ProductPage extends TestBefore {
                         .cssSelector("[class*='_1sjxYfIabK _26mXJDBxtH']")));
     }
 
+    @Step("Добавление элемента в корзину")
+    public void addToBasketWithPrCode() {
+        // Находим одну из последних  щеток и жмем на "добавить в корзину"
+        elements.get(0).findElement(By.cssSelector("[class*='_2w0qPDYwej']")).click();
+        // Ждем, пока щетка добавится в корзину
+        (new WebDriverWait(driver, 20))
+                .until(ExpectedConditions.presenceOfElementLocated(By
+                        .cssSelector("[class*='_1sjxYfIabK _26mXJDBxtH']")));
+    }
+
+
+
     @Step("Переход в корзину")
     public void goToBasket() {
         // Кликаем еще раз, чтобы перейти в корзину
         elements.get(elements.size() - 3).findElement(By.cssSelector("[class*='_2w0qPDYwej']")).click();
+        // Ждем перехода
+        (new WebDriverWait(driver, 10))
+                .until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("[class*='_3AlSA6AOKL']")));
+    }
+
+    @Step("Переход в корзину")
+    public void goToBasketWithPrCode() {
+        // Кликаем еще раз, чтобы перейти в корзину
+        elements.get(0).findElement(By.cssSelector("[class*='_2w0qPDYwej']")).click();
         // Ждем перехода
         (new WebDriverWait(driver, 10))
                 .until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("[class*='_3AlSA6AOKL']")));
